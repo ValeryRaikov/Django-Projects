@@ -1,0 +1,26 @@
+{% extends 'base/base.html' %}
+
+{% block page_content %}
+
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            {% for core in index %}
+                <div class="col-md-4 mb-4 box-shadow border">
+                    <img class="card-img-top" src="https://via.placeholder.com/150x100">
+                    <div class="card-body">
+                        <h4><a href="{{ core.get_absolute_url }}">{{ core.title }}</a></h4>
+                        <p class="card-text"></p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <small class="text-muted">9 mins</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
