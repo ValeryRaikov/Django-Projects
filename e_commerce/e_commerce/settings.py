@@ -18,6 +18,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'e_commerce.store.apps.StoreConfig',
+    'e_commerce.accounts.apps.AccountsConfig',
 ]
 
 MIDDLEWARE = [
@@ -115,5 +116,9 @@ STATICFILES_DIRS = [
 MEDIA_URL = 'images/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
+
+LOGIN_REDIRECT_URL = 'store'
+LOGIN_URL = 'login'
+LOGOUT_REDIRECT_URL = 'store'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

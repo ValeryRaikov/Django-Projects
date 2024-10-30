@@ -1,9 +1,10 @@
 import json
 import datetime
 
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
 from .models import *
 from .utils import cookie_cart, cart_data, guest_order
 
@@ -23,6 +24,20 @@ def store(request):
     return render(request, 'store/store.html', context)
 
 
+@login_required
+def product_detail(request, pk):
+    product = get_object_or_404(Product, id=pk)
+    data = cart_data(request)
+    cart_items = data['cart_items']
+
+    context = {
+        'product': product,
+        'cart_items': cart_items,
+    }
+    return render(request, 'store/product_detail.html', context)
+
+
+@login_required
 def cart(request):
     data = cart_data(request)
     cart_items = data['cart_items']
@@ -38,6 +53,7 @@ def cart(request):
     return render(request, 'store/cart.html', context)
 
 
+@login_required
 @csrf_exempt
 def checkout(request):
     data = cart_data(request)

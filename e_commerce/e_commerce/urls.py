@@ -5,6 +5,7 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/', include('e_commerce.accounts.urls')),
     path('', include('e_commerce.store.urls')),
 ]
 
